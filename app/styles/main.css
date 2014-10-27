@@ -1,0 +1,20 @@
+.options-tab {
+	margin-top: -22px;
+}
+
+.options {
+	border: 1px solid #ddd;
+	background-color: #f5f5f5;
+	padding: 10px;
+	border-top: none;	
+}
+
+.options-text {
+	border: 1px solid #ddd;
+	padding: 10px;
+	color: #333;
+	background-color: #f5f5f5;
+	cursor: pointer; 
+	border-top: none;
+	margin-top: -1px;
+}

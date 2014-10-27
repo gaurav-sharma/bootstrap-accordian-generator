@@ -10,9 +10,10 @@
 angular.module('bootstrapAccordianGeneratorApp')
   .controller('MainCtrl', function ($scope, myService) {
     
-    
+	//initialize
     $scope.newHeader = '';
     $scope.newContent = '';
+    $scope.showOptions = false;
     
     $scope.items = [{
     	header: 'Header 1',
@@ -22,6 +23,17 @@ angular.module('bootstrapAccordianGeneratorApp')
     	content: 'Content 2'
     }];
     
+    $scope.options = [{
+    	value: '1',
+    	description: 'First FAQ expanded on page load',
+    	defaultValue: false
+    }, {
+    	value: '2',
+    	description: 'All Expanded',
+    	defaultValue: false
+    }];
+    
+    //add faq items
     $scope.addItems = function() {
     	
     	$scope.items.push({
@@ -31,16 +43,22 @@ angular.module('bootstrapAccordianGeneratorApp')
     	
     	$scope.newHeader = '';
         $scope.newContent = '';
-        
-        $scope.rawHtml = myService.rawHtml($scope.items);
+
     };
     
-    $scope.removeItem = function(index) {
-    	
+    //delete faq items
+    $scope.removeItem = function(index) {    	
     	$scope.items.splice(index, 1);
-    	$scope.rawHtml = myService.rawHtml($scope.items);
     };
     
-    $scope.rawHtml = myService.rawHtml($scope.items);
+    //watch for collection addition / deletion 
+    $scope.$watchCollection('items', function(newValue, oldValue) {
+    	$scope.rawHtml = myService.rawHtml($scope.items, $scope.options);
+    });
+    
+    //watch for property changes in options
+    $scope.$watch('options', function(newValue, oldValue) {
+    	$scope.rawHtml = myService.rawHtml($scope.items, $scope.options);
+    }, true);
     
   });

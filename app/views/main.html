@@ -1,3 +1,19 @@
+<div class="options-tab">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="options" ng-show="showOptions">
+				<div class="checkbox" ng-repeat="option in options">
+					<label> <input type="checkbox" value="{{option.value}}" ng-model="option.defaultValue"> {{option.description}}
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-6 col-sm-2 col-xs-offset-6 col-sm-offset-10">
+			<div class="options-text" ng-click="showOptions = !showOptions">Options <span class="caret"></span></div>
+		</div>
+	</div>
+</div>
+
 <div class="row">
 
 	<div class="col-sm-4">
@@ -29,14 +45,14 @@
 			<div class="panel panel-default" ng-repeat="item in items">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion"
+						<a data-toggle="collapse" 
 							href="#collapse{{$index}}" target="_self"> {{item.header}} </a>
 						<button type="button" class="close" ng-click="removeItem($index)">
 							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 						</button>
 					</h4>
 				</div>
-				<div id="collapse{{$index}}" class="panel-collapse collapse">
+				<div id="collapse{{$index}}" class="panel-collapse collapse" ng-class="{in: (options[0].defaultValue && $index === 0) || options[1].defaultValue}">
 					<div class="panel-body">
 						<div ng-bind-html="item.content"></div>
 					</div>
