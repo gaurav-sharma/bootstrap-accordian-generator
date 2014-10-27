@@ -12,7 +12,7 @@ angular.module('bootstrapAccordianGeneratorApp')
 	  
 	  this.rawHtml = function(objArray, options) {
 		  
-		  var html = '<div class="panel-group" id="accordion">';
+		  var html = '<div class="panel-group">';
 		  
 		  var inClass = '';
 		  
